@@ -107,7 +107,7 @@ class MaxIoUAssigner(BaseAssigner):
                 gt_bboxes_ignore = gt_bboxes_ignore.cpu()
             if gt_labels is not None:
                 gt_labels = gt_labels.cpu()
-
+                
         overlaps = self.iou_calculator(gt_bboxes, bboxes)
 
         if (self.ignore_iof_thr > 0 and gt_bboxes_ignore is not None
@@ -209,6 +209,7 @@ class MaxIoUAssigner(BaseAssigner):
             pos_inds = torch.nonzero(
                 assigned_gt_inds > 0, as_tuple=False).squeeze()
             if pos_inds.numel() > 0:
+                gt_labels = gt_labels.long() #추가
                 assigned_labels[pos_inds] = gt_labels[
                     assigned_gt_inds[pos_inds] - 1]
         else:

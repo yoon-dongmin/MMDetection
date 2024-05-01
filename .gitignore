@@ -122,3 +122,14 @@ work_dirs/
 *.pth
 *.py~
 *.sh~
+
+# weight
+checkpoints/*
+weights/*
+
+# dataset
+kitti_tiny/*
+balloon/*
+
+# result
+demo/*
